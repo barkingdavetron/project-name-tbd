@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smartlete Login</title>
+<link rel="stylesheet" type="text/css" href="Css.css">
+<script src ="Js.js"></script>
+
+</head>
+<body>
+  
+      
+     
+<div class="navbar">
+  <a href=""><span class="Smart">Smart</span><span class="Lete">lete.</span></a>
+  <a href="">Please log in to continue</a>
+</div>
+        
+<div class = "wrapper"> <!-- The wrapper class that holds both forms, letting me style both -->
+    <div class = "form-box login"> <!-- Start of log in form-->
+        <h2>Login</h2>
+        <form action ="#">
+            <div class = "input-box"><!-- Where the user will input the data-->
+                <input type ="text" required> <!-- Allowing the user to input text into the input box-->
+                <label>Username:</label> <!-- Username label-->
+            </div>
+            <div class ="input-box">
+                <input type ="password" required><!-- This changes the input type to password so the text is replaced with stars-->
+                <label>Password:</label>
+            </div>
+            
+            <div class ="remember-forget"> 
+                <label><input type = "checkbox">Remember Me</label> <!-- Checkbox-->
+            </div>
+            <button type ="submit" class="btn1">Login</button><!-- Log in button-->
+            <div class="login-register">
+                <p>Don't have an account? <a href="#" class="register-link">Register here:</a></p> <!-- Link that switched this form to the sign up form-->
+            </div>
+        </form>
+    </div><!-- End of log in form-->
+
+    <div class = "form-box register">
+        <h2>Sign Up </h2>
+        <form action ="#">
+            <div class = "input-box">
+                <input type ="text" required>
+                <label>Username:</label>
+            </div>
+            <div class ="input-box">
+                <span class = "icon"></span>
+                <input type ="password" required>
+                <label>Password:</label>
+            </div>
+            <div class ="remember-forget">
+                <label><input type = "checkbox">I agree to the terms and conditions</label>
+            </div>
+            <button type ="submit" class="btn1">Sign Up</button>
+            <div class="login-register">
+                <p>Already have an account? Log in here: <a href="#" class="login-link">Log In </a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+    </body>
+
+    <script>
+
+
+        // handles the users input for the sign up  
+        const registerForm = document.querySelector('.form-box.register form');
+        registerForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // 
+        const username = registerForm.querySelector('input[type="text"]').value;
+        const password = registerForm.querySelector('input[type="password"]').value;
+        const agreeCheckbox = registerForm.querySelector('input[type="checkbox"]').checked;
+        
+        // Perform validation if needed
+        if (!agreeCheckbox) {
+        // Show an alert if the user does not accept the terms and conditions
+        alert('Please agree to the terms and conditions.');
+        return;
+        }
+        
+        // Save the registration information to sessionStorage
+        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('password', password);
+        
+        // Clear the registration fields
+        registerForm.reset();
+        
+        // Display the login form after registration
+        wrapper.classList.remove('active');
+        });
+        
+        // Function to handle form submission for login
+        const loginForm = document.querySelector('.form-box.login form');
+        loginForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent the form from submitting to the server
+        const username = loginForm.querySelector('input[type="text"]').value;
+        const password = loginForm.querySelector('input[type="password"]').value;
+        
+        // gets the users input from sessionStorage
+        const registeredUsername = sessionStorage.getItem('username');
+        const registeredPassword = sessionStorage.getItem('password');
+        
+        // Check if the entered credentials = the registered credentials
+        if (username === registeredUsername && password === registeredPassword) {
+        // Redirect to Home.html
+        navigateToHome();
+        } else {
+        // Shows an alert for invalid credentials
+        alert('Invalid credentials. Please try again.');
+        }
+        
+        // Clear the login form fields
+        loginForm.reset();
+        });
+        
+        // Function to go to Home.html
+        function navigateToHome() {
+        window.location.href = 'Main.html';
+        }
+        
+        // Toggle between the login and registration forms
+        const wrapper = document.querySelector('.wrapper');
+        const loginLink = document.querySelector('.login-link');
+        const registerLink = document.querySelector('.register-link');
+        
+        registerLink.addEventListener('click', () => {
+        wrapper.classList.add('active');
+        });
+        
+        loginLink.addEventListener('click', () => {
+        wrapper.classList.remove('active');
+        });
+        
+        </script>
+    </html>
