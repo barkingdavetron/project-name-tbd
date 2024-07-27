@@ -54,6 +54,8 @@ Before you begin, ensure you have the following installed:
 4. **Open the pgadmin tool**:
 Open your browser and navigate to `http://localhost:5050`
 
+username is admin@gmail.com password is admin
+
 when in the pgadmin tool right click servers 
 
 in the popup you need to click register then servers
