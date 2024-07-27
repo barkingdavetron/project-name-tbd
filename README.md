@@ -44,14 +44,15 @@ Before you begin, ensure you have the following installed:
 2. **Unpack the files** (if you downloaded as a zip file):
     
     unzip the download and take out the folder titled postgres
+   **important*** make sure the postgres folder is not inside naother postgres folder this will break the system and is a byproduct of the unpacking process
 
 
-3. **Run the application**:
+4. **Run the application**:
    
     in the terminal run docker-compose up --build
   
 
-4. **Open the pgadmin tool**:
+5. **Open the pgadmin tool**:
 Open your browser and navigate to `http://localhost:5050`
 
 username is admin@gmail.com password is password
